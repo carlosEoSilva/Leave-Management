@@ -1,0 +1,23 @@
+-Todos os formulários por padrão são do tipo POST.
+
+1x- no arquivo Program.cs temos a seguinte instrução:
+ var connectionString = builder.Configuration.GetConnectionString("DefaultConnection");
+
+ o "Configuration" refere-se ao arquivo "appsettings.json", ou seja, no arquivo "appsettigs.json" será buscado o valor da propriedade "DefaultConnection".
+
+2x- O "Bind" serve para indicar que os valores das propriedades indicadas dentro do parenteses devem ser armazenadas nas propriedades correspondentes da classe "LeaveType". Os nomes devem corresponder aos valores da propriedade "asp-for". Ex: asp-for="Name"
+
+[Bind("Name,DefaultDays,Id,DateCreated,DateModified")] LeaveType leaveType
+
+3x- depois de instalar os dois pacotes do automapper(automapper, automapperextensions), precisa criar uma classe com as configurações de mapeamento e esta classe precisa herdar a classe Profile, depois precisa registrar a configuração de mapeameto no Program.cs.
+
+COMENTÁRIOS DO CURSO REINICIADO
+
+- No arquivo "launchSettings.json" ficam as configurações de execução do projeto, a propriedade "profiles" contém as configurações de execução quando clicamos no botão "play", aqui definimos a url da aplicação e também o ambiente de execução em "environmentVariables".
+
+===========================================================
+
+1- é como se fosse a tipagem da view, a instrução "@model TestViewModel" indica que esta view deve usar a classe "TestViewModel"
+
+2- 
+

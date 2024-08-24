@@ -1,0 +1,19 @@
+﻿@model TestViewModel //note-1
+
+@*
+    this is a commented block    
+*@
+
+
+@{
+    ViewData["Title"] = "Test View";
+}
+
+<h1>Hello From test controller</h1>
+
+<h1>@Model.Name</h1>
+
+@if (Model.DateOfBirth.HasValue)
+{
+    <h1>Date of birth: @Model.DateOfBirth</h1>
+}
