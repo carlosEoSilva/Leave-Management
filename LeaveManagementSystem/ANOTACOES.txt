@@ -1,3 +1,5 @@
+111 1034
+
 -Todos os formulários por padrão são do tipo POST.
 
 1x- no arquivo Program.cs temos a seguinte instrução:
@@ -16,8 +18,53 @@ COMENTÁRIOS DO CURSO REINICIADO
 - No arquivo "launchSettings.json" ficam as configurações de execução do projeto, a propriedade "profiles" contém as configurações de execução quando clicamos no botão "play", aqui definimos a url da aplicação e também o ambiente de execução em "environmentVariables".
 
 ===========================================================
+MVC TAG HELPERS
+
+- @Html.DisplayNameFor(model => model.Name)
+exibe o nome da propriedade da classe usada como model, se a propriedade possuir a notação [Display(Name = "label da propriedade")], na tela será exibido o valor definido para o "Name".
+
+- @Html.DisplayFor(model => model.Name)
+exibe o valor da propriedade do model.
+
+===========================================================
 
 1- é como se fosse a tipagem da view, a instrução "@model TestViewModel" indica que esta view deve usar a classe "TestViewModel"
 
-2- 
+2- a diferença entre "DbContext" e "IdentityDbContext" é que o "IdentityDbContext" já vem com uma estrutura inicial para gerenciamento de usuários. O "IdentityDbContext" contém a herança do "DbContext".
 
+3- esta notação é para que a tabela seja criada no banco com tipo "nvarchar(150)", limitando a quantidade de caracteres. Também pode ser usado o "[MaxLength(150)]"
+
+4- o "Model" se refere ao "viewModel" especificado no início da view, ou seja o "Model" sempre será "IEnumerable<LeaveManagementSystem.Data.LeaveType>".
+
+5- depois de installar o pacote "AutoMapper", na configuração do serviço no arquivo "Startup.cs", o parâmetro "Assembly.GetExecutingAssembly()" serve para que o serviço procure no projeto por qualquer arquivo de mapeamento, não é necessário informar uma classe específica. Para injetar o automapper usamos o "IMapper" no construtor.
+
+6- esta configuração é usada quando precisamos mapear propriedades com nomes diferentes, neste exemplo o "IndexVM.Days" irá receber o valor de "LeaveType.NumberOfDays"
+
+7- quando criar o mapeamento da classe a ordem é importante, a primeira classe é a "origem" e a segunda é o "destino". Mapeamos sempre da "origem" para o "destino".
+
+8- o "data notation" "Length" possui três parâmetros, o primeiro é o tamanho mínimo, tamanho máximo e uma mensagem de erro que é opcional. Para campos numéricos podemos usar o "Range" para definir valor mínimo e máximo.
+
+9- é possível customizar as validações feitas no Model e criar erros atravéz do "ModelState.AddModelError(nameof([propriedade do model]), "[mensagem de erro]")".
+
+10- o "ReverseMap" é um método de extensão que permite mapear da "origem" para o "destino" e do "destino" para a "origem".
+
+11- classe criada usando o "primary constructor" que permite informar as propriedades diretamente na declaração da classe, estas propriedades serão por padrão privadas.
+
+12- se colocar o ";" no final da declaração do "namespace" não precisa usar as chaves que emglobam toda a classe;
+
+13- configurando a relação de muitos-para-muitos entre as tabelas de "User" e "UserRole", essas tabelas foram criadas por padrão, o .net já sabe que é uma relação.
+
+14- foi criado a classe "ApplicationUser" que herda a classe "IdentityUser", aqui está sendo definido que o "IdentityDbContext" deve usar a classe "ApplicationUser" no lugar da "IdentityUser". Isso só funciona porque "ApplicationUser" herda a classe "IdentityUser", se remover a herança.Também precisa alterar a entidade padrão no "Program.cs".
+
+15- esta classe foi criada para poder adicionar novas colunas à classe "IdentityUser", estas propriedades não existem nela.
+
+16- o padrão "builder.Services.AddDefaultIdentity<IdentityUser>" foi alterado para "builder.Services.AddDefaultIdentity<ApplicationUser>".
+Também precisa informar de forma explícita o ".AddRoles<IdentityRole>()", o "identity" original foi alterado, mas o "role" permanece o mesmo. 
+
+17- o "IConfiguration" serve para acessar as configurações do "appsettings.json".
+
+18- acessando as configurações do "appsettings.json".
+
+19- esta anotação é para indicar que apenas administradores podem acessar este controller
+
+20- 
